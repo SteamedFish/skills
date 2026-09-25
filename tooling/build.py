@@ -139,8 +139,18 @@ def save_json(path, data):
         f.write("\n")
 
 
+def load_report():
+    if os.path.exists(REPORT_FILE):
+        with open(REPORT_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict) and "sources" in data:
+            return data
+    return {"own": [], "sources": {}}
+
+
 def sync():
     lock = load_lock()
+    report = load_report()
     for source in load_sources():
         sid = source["id"]
         repo = source["repo"]
@@ -148,6 +158,20 @@ def sync():
         sha = ls_remote(repo, ref)
         if lock.get(sid, {}).get("sha") == sha:
             log(f"[sync] {sid}: up to date ({sha[:12]})")
+            entry = report["sources"].get(sid)
+            if not entry or entry.get("sha") != sha:
+                # upstream unchanged but report entry stale/missing -> refresh it
+                base = os.path.join(VENDOR_DIR, sid)
+                found = sorted(
+                    name for name in os.listdir(base)
+                    if os.path.isdir(os.path.join(base, name))
+                    and os.path.isfile(os.path.join(base, name, "SKILL.md"))
+                ) if os.path.isdir(base) else []
+                report["sources"][sid] = {
+                    "sha": sha,
+                    "discovered": found,
+                    "included": found,
+                }
             continue
         log(f"[sync] {sid}: {lock.get(sid, {}).get('sha', 'new')[:12] if sid in lock else 'new'}"
             f" -> {sha[:12]}")
@@ -211,17 +235,19 @@ def sync():
             "synced_at": datetime.now(timezone.utc).isoformat(),
         }
         save_json(LOCK_FILE, lock)
-        report = {}
-        if os.path.exists(REPORT_FILE):
-            with open(REPORT_FILE, "r", encoding="utf-8") as f:
-                report = json.load(f)
-        report[sid] = {
+        report["sources"][sid] = {
             "sha": sha,
             "discovered": sorted(found),
             "included": sorted(selected),
         }
         save_json(REPORT_FILE, report)
         log(f"[sync] {sid}: vendored {len(selected)} skill(s): {', '.join(sorted(selected))}")
+    report["own"] = sorted(
+        name for name in os.listdir(SKILLS_DIR)
+        if os.path.isdir(os.path.join(SKILLS_DIR, name))
+        and os.path.isfile(os.path.join(SKILLS_DIR, name, "SKILL.md"))
+    )
+    save_json(REPORT_FILE, report)
 
 
 # ---------------------------------------------------------------- validate
