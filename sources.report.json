@@ -1,0 +1,49 @@
+{
+  "mattpocock": {
+    "sha": "484efcbe67ae1e558b4df95bfc90135b7b0c9df8",
+    "discovered": [
+      "ask-matt",
+      "claude-handoff",
+      "code-review",
+      "codebase-design",
+      "diagnosing-bugs",
+      "domain-modeling",
+      "git-guardrails-claude-code",
+      "grill-me",
+      "grill-with-docs",
+      "grilling",
+      "handoff",
+      "implement",
+      "implement-spec",
+      "improve-codebase-architecture",
+      "loop-me",
+      "migrate-to-shoehorn",
+      "pr",
+      "prototype",
+      "research",
+      "resolving-merge-conflicts",
+      "retro",
+      "scaffold-exercises",
+      "setup-matt-pocock-skills",
+      "setup-pre-commit",
+      "setup-ts-deep-modules",
+      "tdd",
+      "teach",
+      "to-questionnaire",
+      "to-spec",
+      "to-tickets",
+      "triage",
+      "wait-what",
+      "wayfinder",
+      "wizard",
+      "writing-beats",
+      "writing-for-agents",
+      "writing-fragments",
+      "writing-shape"
+    ],
+    "included": [
+      "diagnosing-bugs",
+      "tdd"
+    ]
+  }
+}
