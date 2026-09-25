@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
-      proceed: ${{ steps.commit.outputs.proceed }}
+      proceed: ${{ steps.proceed.outputs.proceed }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
