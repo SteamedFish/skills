@@ -1,0 +1,12 @@
+sources:
+  - id: mattpocock
+    repo: https://github.com/mattpocock/skills
+    ref: main
+    subdir: skills
+    discover: "*/*/SKILL.md"
+    include: [tdd, diagnosing-bugs]
+    exclude: []
+    overrides: {}
+    # overrides 示例（源级，应用到该源所有发布副本）:
+    #   tdd:
+    #     metadata: {opencode/autoinvoke: false}

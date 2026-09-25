@@ -1,0 +1,14 @@
+catalogs:
+  global:
+    path: global
+    skills:
+      - id: shell-scripting        # 自有：<name>
+      - id: mattpocock/tdd         # 第三方：<source>/<name>
+  projects:
+    route-web:
+      path: projects/route-web
+      skills:
+        - id: shell-scripting      # 共享示例：同一 skill 出现于多个 catalog
+        - id: mattpocock/diagnosing-bugs
+          # per-catalog override 示例（覆盖源级）:
+          # metadata: {opencode/slash: false}
