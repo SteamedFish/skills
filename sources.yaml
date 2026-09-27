@@ -11,5 +11,5 @@ sources:
     overrides:
       grill-me:
         metadata:
-          opencode/autoinvoke: true
+          opencode/autoinvoke: false
           opencode/slash: true
