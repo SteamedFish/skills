@@ -5,6 +5,8 @@ catalogs:
       - id: shell-scripting
       - id: mattpocock/tdd
       - id: mattpocock/grill-me
+        metadata:
+          opencode/autoinvoke: false
   projects:
     route-web:
       path: projects/route-web
