@@ -6,7 +6,7 @@ catalogs:
       - id: mattpocock/tdd
       - id: mattpocock/grill-me
         metadata:
-          opencode/autoinvoke: false
+          opencode/slash: true
   projects:
     route-web:
       path: projects/route-web
