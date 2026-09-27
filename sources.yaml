@@ -8,3 +8,7 @@ sources:
       - diagnosing-bugs
       - grill-me
       - tdd
+    overrides:
+      grill-me:
+        metadata:
+          opencode/slash: true
