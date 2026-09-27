@@ -5,5 +5,12 @@
     "sha": "484efcbe67ae1e558b4df95bfc90135b7b0c9df8",
     "cfg": "bbc68f39deca",
     "synced_at": "2026-09-27T12:46:20.759658+00:00"
+  },
+  "cloudflare": {
+    "repo": "https://github.com/cloudflare/security-audit-skill",
+    "ref": "main",
+    "sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+    "cfg": "8ea810113779",
+    "synced_at": "2026-09-27T14:47:27.519046+00:00"
   }
 }

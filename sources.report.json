@@ -50,6 +50,15 @@
         "grill-me",
         "tdd"
       ]
+    },
+    "cloudflare": {
+      "sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "discovered": [
+        "security-audit"
+      ],
+      "included": [
+        "security-audit"
+      ]
     }
   }
 }
