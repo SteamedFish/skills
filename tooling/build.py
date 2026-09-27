@@ -148,6 +148,20 @@ def load_report():
     return {"own": [], "sources": {}}
 
 
+def source_cfg(source):
+    """Fingerprint of the vendoring-relevant config. include order matters
+    (it is preserved as-is in include mode), exclude order does not."""
+    payload = {
+        "subdir": source.get("subdir"),
+        "discover": source.get("discover") or "*/SKILL.md",
+        "include": source.get("include") or [],
+        "exclude": sorted(source.get("exclude") or []),
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True).encode()
+    ).hexdigest()[:12]
+
+
 def sync():
     lock = load_lock()
     report = load_report()
@@ -156,7 +170,8 @@ def sync():
         repo = source["repo"]
         ref = source.get("ref") or "main"
         sha = ls_remote(repo, ref)
-        if lock.get(sid, {}).get("sha") == sha:
+        cfg = source_cfg(source)
+        if lock.get(sid, {}).get("sha") == sha and lock.get(sid, {}).get("cfg") == cfg:
             log(f"[sync] {sid}: up to date ({sha[:12]})")
             entry = report["sources"].get(sid)
             if not entry or entry.get("sha") != sha:
@@ -173,8 +188,11 @@ def sync():
                     "included": found,
                 }
             continue
-        log(f"[sync] {sid}: {lock.get(sid, {}).get('sha', 'new')[:12] if sid in lock else 'new'}"
-            f" -> {sha[:12]}")
+        why = "new" if sid not in lock else (
+            "config changed"
+            if lock[sid].get("sha") == sha
+            else f"{lock[sid].get('sha', 'new')[:12]} -> {sha[:12]}")
+        log(f"[sync] {sid}: {why}")
 
         owner, reponame = parse_repo_url(repo)
         url = f"https://codeload.github.com/{owner}/{reponame}/tar.gz/{sha}"
@@ -232,6 +250,7 @@ def sync():
             "repo": repo,
             "ref": ref,
             "sha": sha,
+            "cfg": cfg,
             "synced_at": datetime.now(timezone.utc).isoformat(),
         }
         save_json(LOCK_FILE, lock)
