@@ -13,3 +13,8 @@ sources:
         metadata:
           opencode/autoinvoke: false
           opencode/slash: true
+  - id: cloudflare
+    repo: https://github.com/cloudflare/security-audit-skill
+    ref: main
+    subdir: skills
+    discover: '*/SKILL.md'
