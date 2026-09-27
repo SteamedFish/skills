@@ -4,10 +4,10 @@ catalogs:
     skills:
       - id: shell-scripting
       - id: mattpocock/tdd
+      - id: mattpocock/grill-me
   projects:
     route-web:
       path: projects/route-web
       skills:
         - id: shell-scripting
         - id: mattpocock/diagnosing-bugs
-        - id: mattpocock/grill-me
