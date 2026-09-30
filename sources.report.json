@@ -4,7 +4,7 @@
   ],
   "sources": {
     "mattpocock": {
-      "sha": "484efcbe67ae1e558b4df95bfc90135b7b0c9df8",
+      "sha": "984a2c023c9fb42bb6ea40c70a652284a109dc05",
       "discovered": [
         "ask-matt",
         "claude-handoff",
@@ -25,7 +25,6 @@
         "pr",
         "prototype",
         "research",
-        "resolving-merge-conflicts",
         "retro",
         "scaffold-exercises",
         "setup-matt-pocock-skills",
