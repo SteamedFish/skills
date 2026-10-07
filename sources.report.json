@@ -4,9 +4,10 @@
   ],
   "sources": {
     "mattpocock": {
-      "sha": "875f3e85c4377c26b91e2e036d99514f639ecbf7",
+      "sha": "0daa01d66d1a86a05e70c875c38c9091951980ee",
       "discovered": [
         "ask-matt",
+        "chief-of-staff",
         "claude-handoff",
         "code-review",
         "codebase-design",
