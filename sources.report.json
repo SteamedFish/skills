@@ -4,7 +4,7 @@
   ],
   "sources": {
     "mattpocock": {
-      "sha": "a20813af7bb6d80cfdc8b57924ca6f5941647904",
+      "sha": "06d270381a866c2a77f1e8561025cb292489b4ce",
       "discovered": [
         "ask-matt",
         "chief-of-staff",
@@ -31,6 +31,7 @@
         "setup-matt-pocock-skills",
         "setup-pre-commit",
         "setup-ts-deep-modules",
+        "software-factory",
         "tdd",
         "teach",
         "to-questionnaire",
