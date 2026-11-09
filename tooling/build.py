@@ -219,8 +219,17 @@ def sync():
             for skill_md in glob.glob(
                 os.path.join(search_root, pattern), recursive=True
             ):
-                name = os.path.basename(os.path.dirname(skill_md))
-                found[name] = os.path.dirname(skill_md)
+                skill_dir = os.path.dirname(skill_md)
+                if os.path.abspath(skill_dir) == os.path.abspath(base):
+                    # single-skill repo with SKILL.md at the root: the tarball
+                    # dir is <reponame>-<sha>, so never derive the name from it
+                    name = source.get("name") or reponame
+                elif os.path.abspath(skill_dir) == os.path.abspath(search_root):
+                    # SKILL.md directly under subdir (discover "SKILL.md")
+                    name = source.get("name") or os.path.basename(subdir)
+                else:
+                    name = os.path.basename(skill_dir)
+                found[name] = skill_dir
             include = source.get("include") or []
             exclude = source.get("exclude") or []
             if include:
