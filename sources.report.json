@@ -69,6 +69,15 @@
       "included": [
         "llm-wiki"
       ]
+    },
+    "qingyun": {
+      "sha": "053619b917c6bf2e17eae5496d05eb08e10fe889",
+      "discovered": [
+        "answer-me-with-html"
+      ],
+      "included": [
+        "answer-me-with-html"
+      ]
     }
   }
 }
