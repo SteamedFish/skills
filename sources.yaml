@@ -18,6 +18,9 @@ sources:
     ref: main
     subdir: skills
     discover: '*/SKILL.md'
+    # 两个 validate-*.test.cjs 是上游脚本的单测，SKILL.md 未引用
+    ignore:
+      - '*.test.cjs'
   - id: karpathy
     repo: https://github.com/Astro-Han/karpathy-llm-wiki
     ref: main
@@ -29,6 +32,7 @@ sources:
     # 支持目录前缀与 glob；* 可跨目录）
     ignore:
       - tests/
+      - examples/
       - .gitignore
       - README.md
       - assets/

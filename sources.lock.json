@@ -10,21 +10,21 @@
     "repo": "https://github.com/cloudflare/security-audit-skill",
     "ref": "main",
     "sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
-    "cfg": "30b9e0e46f24",
-    "synced_at": "2026-11-09T09:16:10.402147+00:00"
+    "cfg": "19362e717924",
+    "synced_at": "2026-11-09T09:26:15.344063+00:00"
   },
   "karpathy": {
     "repo": "https://github.com/Astro-Han/karpathy-llm-wiki",
     "ref": "main",
     "sha": "eafcc77001e496cc43499e4923b663aec722c813",
-    "cfg": "584ece553a10",
-    "synced_at": "2026-11-09T09:16:12.095936+00:00"
+    "cfg": "4a54da009c23",
+    "synced_at": "2026-11-09T09:26:17.008643+00:00"
   },
   "qingyun": {
     "repo": "https://github.com/QingYunA/answer-me-with-html",
     "ref": "main",
-    "sha": "5292a517dddb3e0d9b2f102767ec814820bdb7a1",
+    "sha": "084337a755b0b4f44a9fd3c0da73d12867f5530a",
     "cfg": "30b9e0e46f24",
-    "synced_at": "2026-11-09T09:16:14.169272+00:00"
+    "synced_at": "2026-11-09T09:26:38.546580+00:00"
   }
 }
