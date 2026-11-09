@@ -25,6 +25,13 @@ sources:
     # 用 name 显式固定 skill 名（否则发布名会随上游 commit 变化）。
     name: llm-wiki
     discover: SKILL.md
+    # 根目录即 skill，仓库里的工程设施按路径剔除（build.py 的 ignore，
+    # 支持目录前缀与 glob；* 可跨目录）
+    ignore:
+      - tests/
+      - .gitignore
+      - README.md
+      - assets/
   - id: qingyun
     repo: https://github.com/QingYunA/answer-me-with-html
     ref: main

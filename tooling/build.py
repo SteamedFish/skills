@@ -8,6 +8,7 @@ Subcommands:
 """
 
 import argparse
+import fnmatch
 import glob
 import hashlib
 import io
@@ -150,16 +151,53 @@ def load_report():
 
 def source_cfg(source):
     """Fingerprint of the vendoring-relevant config. include order matters
-    (it is preserved as-is in include mode), exclude order does not."""
+    (it is preserved as-is in include mode), everything else is sorted."""
     payload = {
         "subdir": source.get("subdir"),
         "discover": source.get("discover") or "*/SKILL.md",
         "include": source.get("include") or [],
         "exclude": sorted(source.get("exclude") or []),
+        "ignore": sorted(source.get("ignore") or []),
     }
     return hashlib.sha256(
-        json.dumps(payload, sort_keys=True).encode()
+        json.dumps(payload).encode()
     ).hexdigest()[:12]
+
+
+def _ignore_factory(root, patterns):
+    """Build a shutil.copytree ignore callback for per-source `ignore` globs.
+
+    Patterns are relative to the skill directory. A pattern matching a
+    directory drops the whole subtree; `*` also matches `/` (fnmatch
+    semantics), so "*.png" drops PNGs at any depth. Trailing slashes and a
+    leading "./" are tolerated.
+    """
+    pats = []
+    for raw in patterns or []:
+        p = raw.strip()
+        while p.startswith("./"):
+            p = p[2:]
+        p = p.rstrip("/")
+        if p:
+            pats.append(p)
+    if not pats:
+        return None
+
+    def ignore(dir_path, names):
+        rel_dir = os.path.relpath(dir_path, root).replace(os.sep, "/")
+        skipped = set()
+        for n in names:
+            rel = n if rel_dir in (".", "") else f"{rel_dir}/{n}"
+            parts = rel.split("/")
+            if any(
+                fnmatch.fnmatch("/".join(parts[:i]), pat)
+                for pat in pats
+                for i in range(1, len(parts) + 1)
+            ):
+                skipped.add(n)
+        return skipped
+
+    return ignore
 
 
 def sync():
@@ -246,8 +284,13 @@ def sync():
             if os.path.isdir(dest):
                 shutil.rmtree(dest)
             os.makedirs(dest)
+            ignore = source.get("ignore") or []
             for name in selected:
-                shutil.copytree(found[name], os.path.join(dest, name))
+                shutil.copytree(
+                    found[name],
+                    os.path.join(dest, name),
+                    ignore=_ignore_factory(found[name], ignore),
+                )
             # upstream license files -> vendor/<source>/
             for f in os.listdir(base):
                 if f.upper().startswith(
