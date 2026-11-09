@@ -8,6 +8,11 @@ catalogs:
         metadata:
           opencode/slash: true
       - id: karpathy/llm-wiki
+      # 仅 / 命令触发：从模型可发现列表移除，但保留 slash 入口
+      - id: qingyun/answer-me-with-html
+        metadata:
+          opencode/autoinvoke: false
+          opencode/slash: true
   projects:
     route-web:
       path: projects/route-web
