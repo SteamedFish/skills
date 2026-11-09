@@ -60,6 +60,15 @@
       "included": [
         "security-audit"
       ]
+    },
+    "karpathy": {
+      "sha": "eafcc77001e496cc43499e4923b663aec722c813",
+      "discovered": [
+        "llm-wiki"
+      ],
+      "included": [
+        "llm-wiki"
+      ]
     }
   }
 }

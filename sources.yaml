@@ -18,3 +18,10 @@ sources:
     ref: main
     subdir: skills
     discover: '*/SKILL.md'
+  - id: karpathy
+    repo: https://github.com/Astro-Han/karpathy-llm-wiki
+    ref: main
+    # 单 skill 仓库：SKILL.md 在仓库根目录。tarball 解压目录带 SHA 后缀，
+    # 用 name 显式固定 skill 名（否则发布名会随上游 commit 变化）。
+    name: llm-wiki
+    discover: SKILL.md
