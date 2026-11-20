@@ -4,7 +4,7 @@
   ],
   "sources": {
     "mattpocock": {
-      "sha": "864f7f6005d4c8db43994d3d2b47f145291a244f",
+      "sha": "4fa24face3dab2e09fe69ba74eaf765156df1a4b",
       "discovered": [
         "ask-matt",
         "chief-of-staff",
@@ -71,7 +71,7 @@
       ]
     },
     "qingyun": {
-      "sha": "b1f3b9f876b9c24c1423fd940623159e78525816",
+      "sha": "997479b6f34c8a5141c61b03f144e821c8f99f2d",
       "discovered": [
         "answer-me-with-html"
       ],
