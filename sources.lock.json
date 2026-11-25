@@ -2,9 +2,9 @@
   "mattpocock": {
     "repo": "https://github.com/mattpocock/skills",
     "ref": "main",
-    "sha": "4fa24face3dab2e09fe69ba74eaf765156df1a4b",
+    "sha": "eac8e64949c201435fddab2c5c5d7ce45574dd43",
     "cfg": "73d80b709b6d",
-    "synced_at": "2026-11-20T11:55:37.047687+00:00"
+    "synced_at": "2026-11-25T13:12:41.849593+00:00"
   },
   "cloudflare": {
     "repo": "https://github.com/cloudflare/security-audit-skill",
